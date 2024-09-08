@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap");
+// Переменная для шрифта
+$nunito-font: "Nunito Sans", sans-serif;
+
+// Создание миксина для шрифтов
+@mixin font-nunito {
+    font-family: $nunito-font;
+}
+
+@mixin container {
+    padding: 0.5rem calc((100vw - 1200px) / 2);
+}
+
+// Сброс стилей для всех элементов
+* {
+    @include font-nunito; // Подключение миксина
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
