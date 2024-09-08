@@ -1,4 +1,12 @@
-import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  ViewChild,
+  AfterViewInit,
+  inject,
+} from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { UserService } from '../../data/services/user.service';
 
 @Component({
   selector: 'app-auth',
@@ -7,18 +15,13 @@ import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.scss',
 })
-export class AuthComponent implements AfterViewInit {
-  @ViewChild('registerBtn') registerBtn!: ElementRef;
-  @ViewChild('container') container!: ElementRef;
-  @ViewChild('loginBtn') loginBtn!: ElementRef;
+export class AuthComponent {
+  userService = inject(UserService);
+  users: any = [];
 
-  ngAfterViewInit(): void {
-    this.registerBtn.nativeElement.addEventListener('click', () => {
-      this.container.nativeElement.classList.add('active');
-    });
-
-    this.loginBtn.nativeElement.addEventListener('click', () => {
-      this.container.nativeElement.classList.remove('active');
+  constructor() {
+    this.userService.getUsers().subscribe((data) => {
+      this.users = data;
     });
   }
 }

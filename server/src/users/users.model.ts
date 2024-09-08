@@ -1,11 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
-  AutoIncrement,
   BelongsToMany,
   Column,
   DataType,
   Model,
-  PrimaryKey,
   Table,
 } from 'sequelize-typescript';
 import { Role } from 'src/roles/roles.model';
